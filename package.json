@@ -1,4 +1,5 @@
 {
+  "homepage": "https://makennamartin97.github.io/real-time-data/https://makennamartin97.github.io/ai-chatbot",
   "name": "ai-chatbot",
   "version": "0.1.0",
   "private": true,
@@ -6,6 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "export": "next export",
     "lint": "next lint"
   },
   "dependencies": {
@@ -13,7 +15,7 @@
     "axios": "^1.3.5",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
-    "next": "13.3.0",
+    "next": "^13.3.0",
     "postcss": "8.4.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",

@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     loader:"akamai",
     path:"",
+    domains: [
+      'https://ai-chatbot-dun.vercel.app/',
+    ]
   }
 }
 

@@ -2,8 +2,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import send from '../send-icon.png';
-import icon from '../icon.png';
+import TypingAnimation from "../components/TypingAnimation";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -43,26 +42,40 @@ export default function Home() {
 
   return (
     <div className='mx-auto bg-[#242424] h-screen w-screen justify-center flex'>
-      <Image src={icon} alt="icon" height={100} width={100} className='fixed top-0'/>
+      <img src={"/icon.png"} alt="icon" className='fixed top-0 h-[100px]'/>
       <div className='box fixed bottom-0 pt-16 w-screen md:w-[570px] pb-16'>
         <div>
           <h1 className='text-center text-xl'>Welcome to Kleightonn<span className='text-[#7000FF]'>AI</span></h1>
         </div>
         <div className="flex-grow p-6 ">
           <div className="flex flex-col overflow-y-scroll">
-            {chatLog.map((message, i)=>
-            <div key={i} className='text-center p-3'>
-              {message.type === 'user' ? <h2 className='text-[#242424] text-md md:text-lg text-left'>{message.message}</h2> : <h2 className='text-[#7000FF] text-md md:text-lg text-right p-3'>{message.message}</h2>}
+            {
+        chatLog.map((message, index) => (
+          <div key={index} className={`flex ${
+            message.type === 'user' ? 'justify-end' : 'justify-start'
+            }`}>
+            <div className={`${
+              message.type === 'user' ? 'bg-purple-500' : 'bg-gray-800'
+            } rounded-lg p-2 m-1 text-white max-w-sm`}>
+            {message.message}
             </div>
-            )}
+            </div>
+        ))
+            }
+            {
+              isLoading &&
+              <div key={chatLog.length} className="flex justify-start">
+                  <div className="bg-gray-800 rounded-lg p-2 text-white max-w-sm">
+                    <TypingAnimation />
+                  </div>
+              </div>
+            }
           </div>
         </div>
       </div>
-      <form onSubmit={handleSubmit} className='fixed bottom-0 pr-4'>
-        <input type="text" placeholder='Type your question...' value={inputValue} onChange={(e)=>setInputValue(e.target.value)} id="chat"/>
-        <button type="submit">
-          <Image src={send} alt="send" height={25} width={25} />
-        </button>
+      <form onSubmit={handleSubmit} className='fixed bottom-0 w-full pb-3'>
+        <input type="text" placeholder='Type your question...' value={inputValue} onChange={(e)=>setInputValue(e.target.value)} id="chat" className='w-[230px] xs:w-[300px] sm:w-[500px]'/>
+        <button type="submit"></button>
       </form>
     </div>
 
